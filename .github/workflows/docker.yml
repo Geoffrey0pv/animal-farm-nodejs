@@ -31,6 +31,9 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHRC_TOKEN }}
 
+      - name: Set lowercase repository owner
+        run: echo "REPO_OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
+
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -39,4 +42,4 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/mi-app:latest
-            ghcr.io/${{ github.repository_owner | toLower }}/mi-app:latest
+            ghcr.io/${{ env.REPO_OWNER_LC }}/mi-app:latest
