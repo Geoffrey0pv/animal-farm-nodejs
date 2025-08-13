@@ -38,6 +38,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: |
-            jamtur01/animal-farm-nodejs:latest
-            ghcr.io/jamtur01/animal-farm-nodejs:latest
+          tags: | 
+          ${{ secrets.DOCKERHUB_USERNAME }}/animal-farm-nodejs:latest 
+          ghcr.io/${{ github.repository_owner }}/animal-farm-nodejs:latest
